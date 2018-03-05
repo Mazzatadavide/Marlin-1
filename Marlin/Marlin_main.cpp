@@ -9349,6 +9349,11 @@ inline void gcode_M226() {
    *       M302 S170    ; only allow extrusion above 170
    *       M302 S170 P1 ; set min extrude temp to 170 but leave disabled
    */
+   
+   
+   
+   
+  
   inline void gcode_M302() {
     const bool seen_S = parser.seen('S');
     if (seen_S) {
@@ -9604,7 +9609,15 @@ void quickstop_stepper() {
   set_current_from_steppers_for_axis(ALL_AXES);
   SYNC_PLAN_POSITION_KINEMATIC();
 }
-
+inline void gcode_M700(){    //go to given point, firts Y then X
+     feedrate_mm_s = 20;
+     current_position[Y_AXIS] = 319;
+     buffer_line_to_current_position();
+     stepper.synchronize();
+      current_position[X_AXIS] = -20;
+      buffer_line_to_current_position();
+      stepper.synchronize();
+}
 #if HAS_LEVELING
   /**
    * M420: Enable/Disable Bed Leveling and/or set the Z fade height.
@@ -11902,6 +11915,12 @@ void process_parsed_command() {
           break;
       #endif
 
+      
+      case 700:
+      gcode_M700();
+      break;
+
+      
       case 109: // M109: Wait for hotend temperature to reach target
         gcode_M109();
         break;
@@ -14522,6 +14541,9 @@ void setup() {
     WRITE(LCD_PINS_RS, HIGH);
   #endif
 }
+
+
+    
 
 /**
  * The main Marlin program loop
