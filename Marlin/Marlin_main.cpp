@@ -9614,9 +9614,14 @@ inline void gcode_M700(){    //go to given point, firts Y then X
      current_position[Y_AXIS] = 319;
      buffer_line_to_current_position();
      stepper.synchronize();
+     gcode_M121();
       current_position[X_AXIS] = -20;
       buffer_line_to_current_position();
       stepper.synchronize();
+       current_position[X_AXIS] = 30;
+        buffer_line_to_current_position();
+      stepper.synchronize();
+      gcode_M120();
 }
 #if HAS_LEVELING
   /**
