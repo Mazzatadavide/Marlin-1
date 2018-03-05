@@ -9611,6 +9611,9 @@ void quickstop_stepper() {
 }
 inline void gcode_M700(){    //go to given point, firts Y then X
      feedrate_mm_s = 20;
+      current_position[Z_AXIS] = 10;
+     buffer_line_to_current_position();
+     stepper.synchronize();
      current_position[Y_AXIS] = 319;
      buffer_line_to_current_position();
      stepper.synchronize();
@@ -9623,6 +9626,15 @@ inline void gcode_M700(){    //go to given point, firts Y then X
       stepper.synchronize();
       gcode_M120();
 }
+
+
+
+
+
+
+
+
+
 #if HAS_LEVELING
   /**
    * M420: Enable/Disable Bed Leveling and/or set the Z fade height.
