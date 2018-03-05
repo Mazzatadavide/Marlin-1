@@ -9609,7 +9609,7 @@ void quickstop_stepper() {
   set_current_from_steppers_for_axis(ALL_AXES);
   SYNC_PLAN_POSITION_KINEMATIC();
 }
-inline void gcode_M700(){    //go to given point, firts Y then X
+inline void gcode_M700(){    //go to given point, firts Y then X to enable optic endstop
      feedrate_mm_s = 20;
       current_position[Z_AXIS] = 10;
      buffer_line_to_current_position();
@@ -9625,6 +9625,28 @@ inline void gcode_M700(){    //go to given point, firts Y then X
         buffer_line_to_current_position();
       stepper.synchronize();
       gcode_M120();
+}
+
+
+  inline void gcode_M701(){                                    //close the optic endstop before working
+ feedrate_mm_s = 20;
+      current_position[Y_AXIS] = 250;
+        buffer_line_to_current_position();
+    current_position[X_AXIS] = 220;
+        buffer_line_to_current_position();
+
+    current_position[Y_AXIS] = 319;
+        buffer_line_to_current_position();
+      
+    current_position[X_AXIS] = 315;
+        buffer_line_to_current_position();
+     current_position[X_AXIS] = 220; //LO METTO IN ZONA SAFE
+        buffer_line_to_current_position();
+      current_position[Y_AXIS] = 250;
+        buffer_line_to_current_position();
+    current_position[X_AXIS] = 200;
+        buffer_line_to_current_position();
+     stepper.synchronize();
 }
 
 
@@ -11935,6 +11957,10 @@ void process_parsed_command() {
       
       case 700:
       gcode_M700();
+      break;
+
+      case 701:
+      gcode_M701();
       break;
 
       
