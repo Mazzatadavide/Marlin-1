@@ -494,11 +494,11 @@
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
 #define X_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Y_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Z_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
-#define X_MAX_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define Z_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
+#define X_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Z_MIN_PROBE_ENDSTOP_INVERTING true // set to true to invert the logic of the probe.
+#define Z_MIN_PROBE_ENDSTOP_INVERTING false // set to true to invert the logic of the probe.
 
 // Enable this feature if all enabled endstop pins are interrupt-capable.
 // This will remove the need to poll the interrupt pins, saving many CPU cycles.
@@ -947,12 +947,12 @@
 
   // 3 arbitrary points to probe.
   // A simple cross-product is used to estimate the plane of the bed.
-  #define ABL_PROBE_PT_1_X 50
-  #define ABL_PROBE_PT_1_Y 150
-  #define ABL_PROBE_PT_2_X 60
-  #define ABL_PROBE_PT_2_Y 60
-  #define ABL_PROBE_PT_3_X 130
-  #define ABL_PROBE_PT_3_Y 60
+  #define ABL_PROBE_PT_1_X 10
+  #define ABL_PROBE_PT_1_Y 10
+  #define ABL_PROBE_PT_2_X 50
+  #define ABL_PROBE_PT_2_Y 80
+  #define ABL_PROBE_PT_3_X 150
+  #define ABL_PROBE_PT_3_Y 120
 
 #elif ENABLED(AUTO_BED_LEVELING_UBL)
 
