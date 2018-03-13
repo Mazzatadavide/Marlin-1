@@ -9635,7 +9635,11 @@ inline void gcode_M700(){    //go to given point, firts Y then X to enable optic
     current_position[X_AXIS] = 220;
         buffer_line_to_current_position();
 
-    current_position[Y_AXIS] = 319;
+    current_position[Y_AXIS] = 310;
+        buffer_line_to_current_position();
+      
+    current_position[X_AXIS] = 305;
+     current_position[Y_AXIS] = 319;
         buffer_line_to_current_position();
       
     current_position[X_AXIS] = 315;
@@ -9649,7 +9653,27 @@ inline void gcode_M700(){    //go to given point, firts Y then X to enable optic
      stepper.synchronize();
 }
 
-
+inline void gcode_M800(){
+	current_position[Z_AXIS] = current_position[Z_AXIS]+10;
+        buffer_line_to_current_position();
+        
+	HOMEAXIS(Y);
+	HOMEAXIS(X);
+ 
+	gcode_M700();
+	/*  current_position[Y_AXIS] = 200;
+      buffer_line_to_current_position();
+      stepper.synchronize();
+       current_position[X_AXIS] = 200;
+        buffer_line_to_current_position();
+      stepper.synchronize();
+      */
+       HOMEAXIS(Z);
+  gcode_G29();
+	gcode_M701();
+	
+}
+	
 
 
 
@@ -11963,6 +11987,9 @@ void process_parsed_command() {
       gcode_M701();
       break;
 
+      case 800:
+      gcode_M800();
+      break;
       
       case 109: // M109: Wait for hotend temperature to reach target
         gcode_M109();
