@@ -3970,7 +3970,7 @@ inline void gcode_G4() {
  *
  */
 inline void gcode_G28(const bool always_home_all) {
-
+  
   #if ENABLED(DEBUG_LEVELING_FEATURE)
     if (DEBUGGING(LEVELING)) {
       SERIAL_ECHOLNPGM(">>> gcode_G28");
@@ -9624,6 +9624,7 @@ inline void gcode_M700(){    //go to given point, firts Y then X to enable optic
        current_position[X_AXIS] = 30;
         buffer_line_to_current_position();
       stepper.synchronize();
+      
       gcode_M120();
 }
 
@@ -9632,24 +9633,33 @@ inline void gcode_M700(){    //go to given point, firts Y then X to enable optic
  feedrate_mm_s = 20;
       current_position[Y_AXIS] = 250;
         buffer_line_to_current_position();
+        stepper.synchronize();
     current_position[X_AXIS] = 220;
         buffer_line_to_current_position();
+        stepper.synchronize();
 
     current_position[Y_AXIS] = 310;
         buffer_line_to_current_position();
+        stepper.synchronize();
       
-    current_position[X_AXIS] = 305;
+    current_position[X_AXIS] = 270;
+     buffer_line_to_current_position();
+      stepper.synchronize();
      current_position[Y_AXIS] = 319;
         buffer_line_to_current_position();
-      
-    current_position[X_AXIS] = 315;
+      stepper.synchronize();
+    current_position[X_AXIS] = 313;
         buffer_line_to_current_position();
+        stepper.synchronize();
      current_position[X_AXIS] = 220; //LO METTO IN ZONA SAFE
         buffer_line_to_current_position();
+        stepper.synchronize();
       current_position[Y_AXIS] = 250;
         buffer_line_to_current_position();
-    current_position[X_AXIS] = 200;
+        stepper.synchronize();
+    current_position[X_AXIS] = 150;
         buffer_line_to_current_position();
+        
      stepper.synchronize();
 }
 
@@ -9661,16 +9671,18 @@ inline void gcode_M800(){
 	HOMEAXIS(X);
  
 	gcode_M700();
-	/*  current_position[Y_AXIS] = 200;
+	  current_position[Y_AXIS] = 10;
       buffer_line_to_current_position();
       stepper.synchronize();
-       current_position[X_AXIS] = 200;
+       current_position[X_AXIS] = 10;
         buffer_line_to_current_position();
       stepper.synchronize();
-      */
+      
        HOMEAXIS(Z);
   gcode_G29();
 	gcode_M701();
+ HOMEAXIS(Y);
+ HOMEAXIS(X);
 	
 }
 	
