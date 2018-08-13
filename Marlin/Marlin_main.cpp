@@ -9631,36 +9631,19 @@ inline void gcode_M700(){    //go to given point, firts Y then X to enable optic
 
   inline void gcode_M701(){                                    //close the optic endstop before working
  feedrate_mm_s = 20;
-      current_position[Y_AXIS] = 250;
+ current_position[X_AXIS] = 210;
         buffer_line_to_current_position();
         stepper.synchronize();
-    current_position[X_AXIS] = 220;
+      current_position[Y_AXIS] = 330;
         buffer_line_to_current_position();
         stepper.synchronize();
-
-    current_position[Y_AXIS] = 310;
+    current_position[X_AXIS] = 312;
         buffer_line_to_current_position();
         stepper.synchronize();
-      
-    current_position[X_AXIS] = 270;
-     buffer_line_to_current_position();
-      stepper.synchronize();
-     current_position[Y_AXIS] = 319;
-        buffer_line_to_current_position();
-      stepper.synchronize();
-    current_position[X_AXIS] = 313;
+         current_position[X_AXIS] =210;
         buffer_line_to_current_position();
         stepper.synchronize();
-     current_position[X_AXIS] = 220; //LO METTO IN ZONA SAFE
-        buffer_line_to_current_position();
-        stepper.synchronize();
-      current_position[Y_AXIS] = 250;
-        buffer_line_to_current_position();
-        stepper.synchronize();
-    current_position[X_AXIS] = 150;
-        buffer_line_to_current_position();
-        
-     stepper.synchronize();
+   
 }
 
 inline void gcode_M800(){
